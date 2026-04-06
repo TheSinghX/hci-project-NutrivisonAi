@@ -1,263 +1,172 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-* {
-  box-sizing: border-box;
-}
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
 
 body {
-  background-color: #060a0f;
+  background: #0b0f14;
   color: #f1f5f9;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
 }
 
-/* ─── GLASS CARD ───────────────────────────────────────────── */
+/* ─── CARDS ─────────────────────────────────────────────────── */
 .nv-card {
-  background: rgba(15, 23, 35, 0.75);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 20px;
-  padding: 1.875rem;
-  box-shadow: 0 4px 32px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05);
-  position: relative;
-  overflow: hidden;
+  background: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 4px 16px rgba(0,0,0,0.15);
 }
 
-.nv-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(135deg, rgba(74,222,128,0.04) 0%, transparent 60%);
-  pointer-events: none;
-}
-
-/* ─── RECIPE CARD ──────────────────────────────────────────── */
 .nv-recipe-card {
-  background: rgba(15, 23, 35, 0.75);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 18px;
-  padding: 1.375rem;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.nv-recipe-card::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(74,222,128,0.3), transparent);
-  opacity: 0;
-  transition: opacity 0.3s;
+  background: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 4px 12px rgba(0,0,0,0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .nv-recipe-card:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(74,222,128,0.15);
-  border-color: rgba(74,222,128,0.15);
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  border-color: #374151;
 }
 
-.nv-recipe-card:hover::before {
-  opacity: 1;
-}
-
-/* ─── INPUT ─────────────────────────────────────────────────── */
+/* ─── INPUTS ─────────────────────────────────────────────────── */
 .nv-input {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.09);
-  border-radius: 12px;
-  padding: 0.7rem 0.95rem;
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  padding: 10px 14px;
   color: #f1f5f9;
   font-size: 0.875rem;
   outline: none;
-  transition: all 0.2s ease;
+  transition: border-color 0.18s, box-shadow 0.18s;
   -moz-appearance: textfield;
 }
 
 .nv-input::-webkit-inner-spin-button,
-.nv-input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.nv-input::-webkit-outer-spin-button { -webkit-appearance: none; }
 
-.nv-input::placeholder { color: #374151; }
+.nv-input::placeholder { color: #334155; }
 
 .nv-input:focus {
-  border-color: rgba(74,222,128,0.45);
-  background: rgba(74,222,128,0.04);
-  box-shadow: 0 0 0 3px rgba(74,222,128,0.08);
+  border-color: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34,197,94,0.08);
 }
 
-/* ─── BUTTONS ────────────────────────────────────────────────── */
+/* ─── BUTTONS ─────────────────────────────────────────────────── */
 .nv-btn-primary {
-  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  background: #16a34a;
   color: #fff;
   font-weight: 600;
   font-size: 0.8125rem;
-  padding: 0.7rem 1.25rem;
-  border-radius: 12px;
+  padding: 10px 18px;
+  border-radius: 10px;
   border: none;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background 0.18s, transform 0.15s;
   display: block;
-  letter-spacing: 0.01em;
-  box-shadow: 0 4px 16px rgba(22,163,74,0.25);
-  position: relative;
-  overflow: hidden;
-}
-
-.nv-btn-primary::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 50%);
-  pointer-events: none;
 }
 
 .nv-btn-primary:hover {
+  background: #15803d;
   transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(22,163,74,0.4);
 }
 
 .nv-btn-generate {
-  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  background: #16a34a;
   color: #fff;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 0.9375rem;
-  padding: 0.95rem 2.75rem;
-  border-radius: 14px;
+  padding: 14px 40px;
+  border-radius: 12px;
   border: none;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  min-width: 260px;
+  transition: background 0.18s, transform 0.2s, box-shadow 0.2s;
   letter-spacing: 0.01em;
-  box-shadow: 0 6px 24px rgba(22,163,74,0.3), inset 0 1px 0 rgba(255,255,255,0.15);
-  position: relative;
-  overflow: hidden;
-}
-
-.nv-btn-generate::before {
-  content: "";
-  position: absolute;
-  top: 0; left: -100%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
-  transition: left 0.5s ease;
-}
-
-.nv-btn-generate:hover:not(:disabled)::before {
-  left: 160%;
 }
 
 .nv-btn-generate:hover:not(:disabled) {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 16px 40px rgba(22,163,74,0.45), inset 0 1px 0 rgba(255,255,255,0.15);
+  background: #15803d;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(22,163,74,0.2);
 }
 
 .nv-btn-generate:active:not(:disabled) {
-  transform: translateY(0) scale(0.99);
+  transform: translateY(0);
 }
 
 /* ─── PILLS ──────────────────────────────────────────────────── */
 .nv-pill {
   display: inline-flex;
   align-items: center;
-  background: rgba(74,222,128,0.08);
+  background: rgba(34,197,94,0.08);
   color: #86efac;
-  border: 1px solid rgba(74,222,128,0.18);
+  border: 1px solid rgba(34,197,94,0.15);
   border-radius: 999px;
-  padding: 0.28rem 0.8rem;
+  padding: 4px 12px;
   font-size: 0.72rem;
   font-weight: 500;
-  transition: all 0.15s;
-}
-
-.nv-pill:hover {
-  background: rgba(74,222,128,0.12);
 }
 
 /* ─── ICON BOX ───────────────────────────────────────────────── */
 .nv-icon-box {
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 10px;
-  background: rgba(74,222,128,0.1);
-  border: 1px solid rgba(74,222,128,0.15);
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: rgba(34,197,94,0.08);
+  border: 1px solid rgba(34,197,94,0.12);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
 
-/* ─── METRICS ────────────────────────────────────────────────── */
-.nv-metrics-box {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 12px;
-  padding: 0.7rem;
-  text-align: center;
-  transition: all 0.2s;
+/* ─── LABEL ──────────────────────────────────────────────────── */
+.nv-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #4b5563;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
 }
 
-.nv-metrics-box:hover {
-  background: rgba(255,255,255,0.05);
-  border-color: rgba(255,255,255,0.1);
+/* ─── DIVIDER ────────────────────────────────────────────────── */
+.nv-divider {
+  height: 1px;
+  background: #1f2937;
+  border: none;
+  margin: 0;
 }
 
-/* ─── YOUTUBE BUTTON ─────────────────────────────────────────── */
+/* ─── YOUTUBE BTN ────────────────────────────────────────────── */
 .nv-youtube-btn {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  background: rgba(220,38,38,0.1);
+  background: rgba(239,68,68,0.08);
   color: #fca5a5;
-  border: 1px solid rgba(220,38,38,0.2);
-  border-radius: 10px;
-  padding: 0.55rem 1rem;
+  border: 1px solid rgba(239,68,68,0.15);
+  border-radius: 9px;
+  padding: 8px 14px;
   font-size: 0.78rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: background 0.18s, border-color 0.18s;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .nv-youtube-btn:hover {
-  background: rgba(220,38,38,0.18);
-  border-color: rgba(220,38,38,0.4);
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(220,38,38,0.2);
-  color: #fecaca;
-}
-
-/* ─── HERO GLOW ──────────────────────────────────────────────── */
-.hero-glow-left {
-  position: fixed;
-  top: -200px;
-  left: -200px;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(22,163,74,0.12) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.hero-glow-right {
-  position: fixed;
-  bottom: -200px;
-  right: -200px;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(74,222,128,0.08) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
+  background: rgba(239,68,68,0.14);
+  border-color: rgba(239,68,68,0.28);
 }
 
 /* ─── ANIMATIONS ─────────────────────────────────────────────── */
@@ -266,62 +175,19 @@ body {
 }
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(14px); }
+  from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fade-in {
-  animation: fadeInUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeInUp 0.3s ease forwards;
 }
 
-@keyframes pulseGlow {
-  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(74,222,128,0.4); }
-  50%       { opacity: 0.6; box-shadow: 0 0 0 5px rgba(74,222,128,0); }
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
 }
 
-.pulse-dot {
-  animation: pulseGlow 2.5s ease-in-out infinite;
-}
-
-@keyframes shimmer {
-  0%   { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-
-.gradient-text {
-  background: linear-gradient(135deg, #f9fafb 0%, #86efac 40%, #4ade80 60%, #f9fafb 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmer 4s linear infinite;
-}
-
-/* ─── DIVIDER LINE ────────────────────────────────────────────── */
-.nv-divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(74,222,128,0.25), transparent);
-  border: none;
-  margin: 0;
-}
-
-/* ─── SECTION LABEL ──────────────────────────────────────────── */
-.nv-label {
-  font-size: 0.65rem;
-  font-weight: 700;
-  color: #6b7280;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-/* ─── GRID BG PATTERN ────────────────────────────────────────── */
-.hero-grid {
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-  background-size: 60px 60px;
-  pointer-events: none;
-  z-index: 0;
+.status-dot {
+  animation: blink 2.2s ease-in-out infinite;
 }
