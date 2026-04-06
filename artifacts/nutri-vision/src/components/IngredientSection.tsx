@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { VEGETABLE_OPTIONS, DETECTED_INGREDIENTS_MAP } from "../data/recipes";
+import { VEGETABLE_OPTIONS, getRandomDetectedIngredients } from "../data/recipes";
 
 interface IngredientSectionProps {
   selected: string[];
@@ -36,8 +36,7 @@ export function IngredientSection({ selected, onChange }: IngredientSectionProps
       setImagePreview(ev.target?.result as string);
       setIsAnalyzing(true);
       setTimeout(() => {
-        const keys = Object.keys(DETECTED_INGREDIENTS_MAP);
-        const detectedList = DETECTED_INGREDIENTS_MAP[keys[Math.floor(Math.random() * keys.length)]];
+        const detectedList = getRandomDetectedIngredients();
         setDetected(detectedList);
         setIsAnalyzing(false);
         const newIngredients = [...selected];
@@ -50,21 +49,22 @@ export function IngredientSection({ selected, onChange }: IngredientSectionProps
 
   return (
     <div className="nv-card">
-      <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "22px" }}>
         <div className="nv-icon-box">
-          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#22c55e" strokeWidth={2}>
+          <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="#4ade80" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
           </svg>
         </div>
         <div>
-          <p style={{ fontSize: "0.6875rem", fontWeight: 600, color: "#fff", letterSpacing: "0.08em", textTransform: "uppercase" }}>Ingredients</p>
-          <p style={{ fontSize: "0.7rem", color: "#6b7280", marginTop: "2px" }}>Search or upload an image</p>
+          <p style={{ fontSize: "0.72rem", fontWeight: 600, color: "#9ca3af", letterSpacing: "0.06em", textTransform: "uppercase" }}>Ingredients</p>
+          <p style={{ fontSize: "0.8rem", color: "#f3f4f6", fontWeight: 500, marginTop: "1px" }}>Search or detect via image</p>
         </div>
       </div>
 
-      <div style={{ marginBottom: "18px", padding: "14px", borderRadius: "12px", border: "1px solid #1f2937", background: "rgba(17,24,39,0.5)" }}>
-        <p style={{ fontSize: "0.72rem", fontWeight: 500, color: "#9ca3af", marginBottom: "10px", display: "flex", alignItems: "center", gap: "6px" }}>
-          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#22c55e" strokeWidth={2}>
+      {/* Image Detection */}
+      <div style={{ marginBottom: "20px", padding: "16px", borderRadius: "12px", border: "1px solid rgba(255,255,255,0.05)", background: "rgba(255,255,255,0.02)" }}>
+        <p style={{ fontSize: "0.7rem", fontWeight: 500, color: "#6b7280", marginBottom: "10px", display: "flex", alignItems: "center", gap: "6px" }}>
+          <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="#4ade80" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
           AI Image Detection
@@ -72,12 +72,16 @@ export function IngredientSection({ selected, onChange }: IngredientSectionProps
 
         {imagePreview ? (
           <div style={{ position: "relative" }}>
-            <img src={imagePreview} alt="Uploaded" style={{ width: "100%", height: "140px", objectFit: "cover", borderRadius: "10px", display: "block", marginBottom: "10px" }} />
+            <img
+              src={imagePreview}
+              alt="Uploaded"
+              style={{ width: "100%", height: "130px", objectFit: "cover", borderRadius: "9px", display: "block", marginBottom: "10px" }}
+            />
             <button
               onClick={() => { setImagePreview(null); setDetected([]); if (fileRef.current) fileRef.current.value = ""; }}
-              style={{ position: "absolute", top: "8px", right: "8px", width: "24px", height: "24px", background: "rgba(0,0,0,0.6)", borderRadius: "50%", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "#d1d5db" }}
+              style={{ position: "absolute", top: "8px", right: "8px", width: "22px", height: "22px", background: "rgba(0,0,0,0.65)", borderRadius: "50%", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", color: "#d1d5db" }}
             >
-              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
@@ -85,38 +89,45 @@ export function IngredientSection({ selected, onChange }: IngredientSectionProps
         ) : (
           <button
             onClick={() => fileRef.current?.click()}
-            style={{ width: "100%", height: "90px", border: "1px dashed #374151", borderRadius: "12px", background: "transparent", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "8px", color: "#6b7280", cursor: "pointer", transition: "all 0.2s" }}
+            style={{
+              width: "100%", height: "80px", border: "1px dashed rgba(255,255,255,0.1)", borderRadius: "10px",
+              background: "transparent", display: "flex", flexDirection: "column", alignItems: "center",
+              justifyContent: "center", gap: "7px", color: "#6b7280", cursor: "pointer", transition: "all 0.2s",
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(74,222,128,0.3)"; e.currentTarget.style.color = "#9ca3af"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)"; e.currentTarget.style.color = "#6b7280"; }}
           >
-            <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
             </svg>
-            <span style={{ fontSize: "0.75rem" }}>Click to upload image</span>
+            <span style={{ fontSize: "0.72rem" }}>Click to upload a photo of your vegetables</span>
           </button>
         )}
         <input ref={fileRef} type="file" accept="image/*" style={{ display: "none" }} onChange={handleImageUpload} />
 
         {isAnalyzing && (
-          <div style={{ marginTop: "10px", display: "flex", alignItems: "center", gap: "8px", fontSize: "0.75rem", color: "#22c55e" }}>
-            <div style={{ width: "12px", height: "12px", border: "2px solid #22c55e", borderTopColor: "transparent", borderRadius: "50%", animation: "spin 0.7s linear infinite" }} />
-            Analyzing image with AI...
+          <div style={{ marginTop: "10px", display: "flex", alignItems: "center", gap: "8px", fontSize: "0.72rem", color: "#9ca3af" }}>
+            <div style={{ width: "12px", height: "12px", border: "1.5px solid #4ade80", borderTopColor: "transparent", borderRadius: "50%", animation: "spin 0.7s linear infinite", flexShrink: 0 }} />
+            Analyzing image...
           </div>
         )}
 
         {!isAnalyzing && detected.length > 0 && (
-          <div style={{ marginTop: "10px" }}>
-            <p style={{ fontSize: "0.72rem", color: "#9ca3af", marginBottom: "4px" }}>
-              Detected: <span style={{ color: "#22c55e", textTransform: "capitalize" }}>{detected.join(", ")}</span>
+          <div style={{ marginTop: "10px", padding: "10px 12px", borderRadius: "8px", background: "rgba(74,222,128,0.04)", border: "1px solid rgba(74,222,128,0.1)" }}>
+            <p style={{ fontSize: "0.72rem", color: "#86efac" }}>
+              AI detected: <span style={{ fontWeight: 600, textTransform: "capitalize" }}>{detected.join(", ")}</span>
+              <span style={{ color: "#4b5563", fontWeight: 400 }}> (confidence simulated)</span>
             </p>
-            <p style={{ fontSize: "0.7rem", color: "#4b5563" }}>Added to your ingredient list automatically.</p>
           </div>
         )}
       </div>
 
-      <div style={{ marginBottom: "14px" }}>
-        <p style={{ fontSize: "0.72rem", fontWeight: 500, color: "#9ca3af", marginBottom: "8px" }}>Search Ingredients</p>
+      {/* Search */}
+      <div style={{ marginBottom: "16px" }}>
+        <p style={{ fontSize: "0.7rem", fontWeight: 500, color: "#6b7280", marginBottom: "8px" }}>Search Ingredients</p>
         <div style={{ position: "relative" }}>
-          <div style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", pointerEvents: "none" }}>
-            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#6b7280" strokeWidth={2}>
+          <div style={{ position: "absolute", left: "11px", top: "50%", transform: "translateY(-50%)", pointerEvents: "none" }}>
+            <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="#6b7280" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           </div>
@@ -128,16 +139,26 @@ export function IngredientSection({ selected, onChange }: IngredientSectionProps
             onFocus={() => setIsDropdownOpen(true)}
             onBlur={() => setTimeout(() => setIsDropdownOpen(false), 150)}
             className="nv-input"
-            style={{ width: "100%", paddingLeft: "38px" }}
+            style={{ width: "100%", paddingLeft: "36px" }}
           />
           {isDropdownOpen && filtered.length > 0 && (
-            <div style={{ position: "absolute", top: "calc(100% + 4px)", left: 0, right: 0, background: "#111827", border: "1px solid #374151", borderRadius: "12px", overflow: "hidden", zIndex: 50, boxShadow: "0 8px 32px rgba(0,0,0,0.5)" }}>
+            <div style={{
+              position: "absolute", top: "calc(100% + 4px)", left: 0, right: 0,
+              background: "#111827", border: "1px solid rgba(255,255,255,0.08)",
+              borderRadius: "12px", overflow: "hidden", zIndex: 50,
+              boxShadow: "0 12px 40px rgba(0,0,0,0.6)", maxHeight: "220px", overflowY: "auto",
+            }}>
               {filtered.map((v) => (
                 <button
                   key={v}
                   onMouseDown={() => addIngredient(v)}
-                  style={{ width: "100%", textAlign: "left", padding: "10px 16px", fontSize: "0.875rem", color: "#d1d5db", background: "transparent", border: "none", cursor: "pointer", display: "block", textTransform: "capitalize", transition: "background 0.15s" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = "#1f2937")}
+                  style={{
+                    width: "100%", textAlign: "left", padding: "9px 14px",
+                    fontSize: "0.85rem", color: "#d1d5db", background: "transparent",
+                    border: "none", cursor: "pointer", display: "block",
+                    textTransform: "capitalize", transition: "background 0.1s",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.04)")}
                   onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
                 >
                   {v}
@@ -148,18 +169,19 @@ export function IngredientSection({ selected, onChange }: IngredientSectionProps
         </div>
       </div>
 
+      {/* Selected Ingredients */}
       {selected.length > 0 && (
         <div>
-          <p style={{ fontSize: "0.72rem", fontWeight: 500, color: "#9ca3af", marginBottom: "8px" }}>Selected ({selected.length})</p>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+          <p style={{ fontSize: "0.7rem", fontWeight: 500, color: "#6b7280", marginBottom: "10px" }}>Selected Ingredients</p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "7px" }}>
             {selected.map((v) => (
               <span key={v} className="nv-pill" style={{ textTransform: "capitalize" }}>
                 {v}
                 <button
                   onClick={() => removeIngredient(v)}
-                  style={{ background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex", alignItems: "center", opacity: 0.7, marginLeft: "4px", color: "#22c55e" }}
+                  style={{ background: "none", border: "none", cursor: "pointer", padding: "0 0 0 5px", display: "inline-flex", alignItems: "center", color: "#4ade80", opacity: 0.7 }}
                 >
-                  <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>

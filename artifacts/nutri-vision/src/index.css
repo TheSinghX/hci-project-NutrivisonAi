@@ -7,7 +7,7 @@
 
 body {
   background-color: #0b0f14;
-  color: #f9fafb;
+  color: #f3f4f6;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -15,36 +15,36 @@ body {
 
 .nv-card {
   background-color: #111827;
-  border: 1px solid #1f2937;
-  border-radius: 14px;
-  padding: 1.5rem;
-  transition: border-color 0.2s ease;
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 16px;
+  padding: 1.75rem;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.35);
 }
 
 .nv-recipe-card {
   background-color: #111827;
-  border: 1px solid #1f2937;
-  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 16px;
   padding: 1.25rem;
-  transition: all 0.2s ease;
-  cursor: default;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  transition: all 0.25s ease;
 }
 
 .nv-recipe-card:hover {
-  border-color: rgba(34, 197, 94, 0.25);
-  transform: scale(1.01);
-  box-shadow: 0 4px 24px rgba(34, 197, 94, 0.05);
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.4);
+  border-color: rgba(74,222,128,0.15);
 }
 
 .nv-input {
-  background-color: #0b0f14;
-  border: 1px solid #1f2937;
+  background-color: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius: 10px;
-  padding: 0.625rem 0.875rem;
-  color: #f9fafb;
+  padding: 0.65rem 0.9rem;
+  color: #f3f4f6;
   font-size: 0.875rem;
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, background 0.2s ease;
   -moz-appearance: textfield;
 }
 
@@ -59,49 +59,48 @@ body {
 }
 
 .nv-input:focus {
-  border-color: rgba(34, 197, 94, 0.5);
-  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.08);
+  border-color: rgba(74,222,128,0.4);
+  background-color: rgba(255,255,255,0.06);
+  box-shadow: 0 0 0 3px rgba(74,222,128,0.06);
 }
 
 .nv-btn-primary {
-  background-color: #22c55e;
-  color: #000;
+  background-color: #16a34a;
+  color: #fff;
   font-weight: 600;
   font-size: 0.8125rem;
-  padding: 0.625rem 1.25rem;
+  padding: 0.65rem 1.25rem;
   border-radius: 10px;
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
   display: block;
+  letter-spacing: 0.01em;
 }
 
 .nv-btn-primary:hover {
-  background-color: #16a34a;
+  background-color: #15803d;
   transform: translateY(-1px);
 }
 
-.nv-btn-primary:active {
-  transform: translateY(0);
-}
-
 .nv-btn-generate {
-  background-color: #22c55e;
-  color: #000;
-  font-weight: 700;
+  background-color: #16a34a;
+  color: #fff;
+  font-weight: 600;
   font-size: 0.9375rem;
   padding: 0.875rem 2.5rem;
   border-radius: 12px;
   border: none;
   cursor: pointer;
-  transition: all 0.2s ease;
-  min-width: 220px;
+  transition: all 0.25s ease;
+  min-width: 240px;
+  letter-spacing: 0.01em;
 }
 
 .nv-btn-generate:hover:not(:disabled) {
-  background-color: #16a34a;
+  background-color: #15803d;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(34, 197, 94, 0.25);
+  box-shadow: 0 8px 24px rgba(22,163,74,0.25);
 }
 
 .nv-btn-generate:active:not(:disabled) {
@@ -111,71 +110,75 @@ body {
 .nv-pill {
   display: inline-flex;
   align-items: center;
-  background-color: rgba(34, 197, 94, 0.1);
-  color: #22c55e;
-  border: 1px solid rgba(34, 197, 94, 0.2);
+  background-color: rgba(74,222,128,0.08);
+  color: #4ade80;
+  border: 1px solid rgba(74,222,128,0.15);
   border-radius: 999px;
   padding: 0.25rem 0.75rem;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 500;
-  gap: 0.25rem;
-}
-
-.nv-badge-pill {
-  display: inline-flex;
-  align-items: center;
-  border-radius: 999px;
-  padding: 0.2rem 0.65rem;
-  font-size: 0.7rem;
-  font-weight: 500;
-  border: 1px solid;
-}
-
-.nv-metrics-box {
-  background-color: #0b0f14;
-  border: 1px solid #1f2937;
-  border-radius: 10px;
-  padding: 0.625rem;
-  text-align: center;
 }
 
 .nv-icon-box {
   width: 2rem;
   height: 2rem;
-  border-radius: 0.5rem;
-  background-color: rgba(34, 197, 94, 0.1);
+  border-radius: 8px;
+  background-color: rgba(74,222,128,0.08);
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+.nv-metrics-box {
+  background-color: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 0.625rem;
+  text-align: center;
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.3s ease forwards;
+.nv-youtube-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: rgba(239,68,68,0.1);
+  color: #f87171;
+  border: 1px solid rgba(239,68,68,0.2);
+  border-radius: 10px;
+  padding: 0.6rem 1.1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.nv-youtube-btn:hover {
+  background-color: rgba(239,68,68,0.18);
+  border-color: rgba(239,68,68,0.35);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(239,68,68,0.15);
 }
 
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
 
-.nv-spinner {
-  width: 1rem;
-  height: 1rem;
-  border: 2px solid rgba(0,0,0,0.3);
-  border-top-color: #000;
-  border-radius: 50%;
-  animation: spin 0.7s linear infinite;
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.3s ease forwards;
 }
 
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+  50% { opacity: 0.3; }
 }
 
 .pulse-dot {
-  animation: pulse-dot 1.5s ease-in-out infinite;
+  animation: pulse-dot 2s ease-in-out infinite;
 }

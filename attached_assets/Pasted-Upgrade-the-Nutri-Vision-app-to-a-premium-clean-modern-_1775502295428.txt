@@ -1,0 +1,142 @@
+Upgrade the Nutri-Vision app to a premium, clean, modern product-level UI with enhanced ingredient handling and real-world usability features.
+
+--------------------------------------------------
+
+🎨 UI UPGRADE (IMPORTANT):
+
+Make the UI feel like a clean modern app (similar to Notion / Apple Health style):
+
+- Reduce neon/glow effects
+- Use soft dark theme (#0b0f14)
+- Softer green accent (less bright)
+- More whitespace and padding
+- Bigger section spacing
+- Smooth card shadows instead of borders
+- Cleaner typography hierarchy
+
+Make it feel:
+- Calm
+- Professional
+- Premium
+- Not flashy AI style
+
+--------------------------------------------------
+
+🥕 1. EXPAND VEGETABLE DATABASE (IMPORTANT)
+
+Expand ingredient list to at least 30+ vegetables:
+
+Include:
+potato, tomato, onion, carrot, spinach, paneer, cauliflower, cabbage,
+peas, capsicum, broccoli, mushroom, eggplant (brinjal), zucchini,
+pumpkin, bottle gourd (lauki), bitter gourd (karela),
+ridge gourd, okra (bhindi), corn, beetroot, radish, turnip,
+sweet potato, garlic, ginger, green beans, spring onion,
+lettuce, cucumber
+
+Update search selector to include all of these.
+
+--------------------------------------------------
+
+🧠 2. IMPROVE IMAGE DETECTION (SIMULATION FIX)
+
+Instead of fixed detection:
+
+- Randomly pick 2–4 vegetables from list when image is uploaded
+- Show message:
+  "AI detected: Tomato, Onion, Carrot (confidence simulated)"
+
+This makes it feel smarter and less fake.
+
+--------------------------------------------------
+
+🔍 3. BETTER INGREDIENT SELECTION UX
+
+- Keep search bar
+- Improve selected tags:
+   - Rounded pills
+   - Slight spacing
+   - Remove clutter text
+- Add small label:
+   "Selected Ingredients"
+
+--------------------------------------------------
+
+🍽️ 4. RECIPE DETAIL ENHANCEMENT (IMPORTANT)
+
+Inside "View Details":
+
+Keep:
+- Calories
+- Protein
+- Carbs
+- Fats
+- Steps
+
+ADD:
+
+A button:
+
+"▶ Watch on YouTube"
+
+When clicked:
+Open a YouTube search link like:
+
+https://www.youtube.com/results?search_query=<recipe_name>
+
+Example:
+Aloo Paratha → search automatically
+
+--------------------------------------------------
+
+🎬 5. UX IMPROVEMENTS
+
+- Add smooth loading text:
+   "Analyzing ingredients and generating diet plan..."
+
+- Improve result header:
+   "Personalized Recommendations"
+
+- Add small subtitle:
+   "Based on your BMI and selected ingredients"
+
+--------------------------------------------------
+
+✨ 6. CARD IMPROVEMENTS
+
+Recipe cards should:
+
+- Slight shadow instead of heavy borders
+- Rounded corners
+- More padding
+- Better spacing between elements
+
+Hover:
+- Slight lift effect (scale 1.01)
+
+--------------------------------------------------
+
+🚫 REMOVE OR REDUCE:
+
+- Too bright green highlights
+- Over-glow effects
+- Excess borders
+
+--------------------------------------------------
+
+FINAL RESULT:
+
+The app should feel like:
+- A real product
+- Clean and premium
+- Easy to use
+- Slightly intelligent (AI feel but not flashy)
+
+User flow:
+1. Upload image OR search vegetables
+2. Select goal
+3. Generate diet
+4. Click recipe
+5. View details + click YouTube
+
+This should impress a professor immediately.

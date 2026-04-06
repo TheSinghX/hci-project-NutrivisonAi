@@ -9,10 +9,10 @@ interface BMISectionProps {
 }
 
 const categoryBadge: Record<BMICategory, { bg: string; color: string; border: string }> = {
-  Underweight: { bg: "rgba(59,130,246,0.12)", color: "#60a5fa", border: "rgba(59,130,246,0.25)" },
-  Normal: { bg: "rgba(34,197,94,0.12)", color: "#22c55e", border: "rgba(34,197,94,0.25)" },
-  Overweight: { bg: "rgba(234,179,8,0.12)", color: "#eab308", border: "rgba(234,179,8,0.25)" },
-  Obese: { bg: "rgba(239,68,68,0.12)", color: "#ef4444", border: "rgba(239,68,68,0.25)" },
+  Underweight: { bg: "rgba(96,165,250,0.10)", color: "#93c5fd", border: "rgba(96,165,250,0.18)" },
+  Normal:      { bg: "rgba(74,222,128,0.10)", color: "#86efac", border: "rgba(74,222,128,0.18)" },
+  Overweight:  { bg: "rgba(251,191,36,0.10)", color: "#fcd34d", border: "rgba(251,191,36,0.18)" },
+  Obese:       { bg: "rgba(252,165,165,0.10)", color: "#fca5a5", border: "rgba(252,165,165,0.18)" },
 };
 
 export function BMISection({ bmi, bmiCategory, onUpdate }: BMISectionProps) {
@@ -23,10 +23,7 @@ export function BMISection({ bmi, bmiCategory, onUpdate }: BMISectionProps) {
   function handleUpdate() {
     const h = parseFloat(height);
     const w = parseFloat(weight);
-    if (!h || !w || h <= 0 || w <= 0) {
-      setError("Please enter valid height and weight values.");
-      return;
-    }
+    if (!h || !w || h <= 0 || w <= 0) { setError("Please enter valid height and weight."); return; }
     if (h < 50 || h > 300) { setError("Height must be between 50–300 cm."); return; }
     if (w < 10 || w > 500) { setError("Weight must be between 10–500 kg."); return; }
     setError("");
@@ -36,43 +33,45 @@ export function BMISection({ bmi, bmiCategory, onUpdate }: BMISectionProps) {
 
   return (
     <div className="nv-card" style={{ height: "100%" }}>
-      <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "22px" }}>
         <div className="nv-icon-box">
-          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#22c55e" strokeWidth={2}>
+          <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="#4ade80" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
           </svg>
         </div>
         <div>
-          <p style={{ fontSize: "0.6875rem", fontWeight: 600, color: "#fff", letterSpacing: "0.08em", textTransform: "uppercase" }}>BMI Calculator</p>
-          <p style={{ fontSize: "0.7rem", color: "#6b7280", marginTop: "2px" }}>Enter your measurements</p>
+          <p style={{ fontSize: "0.72rem", fontWeight: 600, color: "#9ca3af", letterSpacing: "0.06em", textTransform: "uppercase" }}>BMI Calculator</p>
+          <p style={{ fontSize: "0.8rem", color: "#f3f4f6", fontWeight: 500, marginTop: "1px" }}>Your measurements</p>
         </div>
       </div>
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px", marginBottom: "14px" }}>
-        <div>
-          <label style={{ display: "block", fontSize: "0.72rem", fontWeight: 500, color: "#9ca3af", marginBottom: "6px" }}>Height (cm)</label>
-          <input type="number" placeholder="e.g. 170" value={height} onChange={(e) => setHeight(e.target.value)} className="nv-input" style={{ width: "100%" }} />
-        </div>
-        <div>
-          <label style={{ display: "block", fontSize: "0.72rem", fontWeight: 500, color: "#9ca3af", marginBottom: "6px" }}>Weight (kg)</label>
-          <input type="number" placeholder="e.g. 65" value={weight} onChange={(e) => setWeight(e.target.value)} className="nv-input" style={{ width: "100%" }} />
-        </div>
+        {[
+          { label: "Height (cm)", placeholder: "e.g. 170", value: height, onChange: setHeight },
+          { label: "Weight (kg)", placeholder: "e.g. 65", value: weight, onChange: setWeight },
+        ].map((f) => (
+          <div key={f.label}>
+            <label style={{ display: "block", fontSize: "0.7rem", fontWeight: 500, color: "#6b7280", marginBottom: "6px" }}>{f.label}</label>
+            <input type="number" placeholder={f.placeholder} value={f.value} onChange={(e) => f.onChange(e.target.value)} className="nv-input" style={{ width: "100%" }} />
+          </div>
+        ))}
       </div>
 
-      {error && <p style={{ fontSize: "0.72rem", color: "#f87171", marginBottom: "10px" }}>{error}</p>}
+      {error && <p style={{ fontSize: "0.7rem", color: "#f87171", marginBottom: "10px" }}>{error}</p>}
 
-      <button className="nv-btn-primary" style={{ width: "100%", marginBottom: "16px" }} onClick={handleUpdate}>Update BMI</button>
+      <button className="nv-btn-primary" style={{ width: "100%", marginBottom: "18px", textAlign: "center" }} onClick={handleUpdate}>
+        Update BMI
+      </button>
 
       {bmi !== null && bmiCategory !== null && (
-        <div style={{ display: "flex", alignItems: "center", gap: "16px", paddingTop: "16px", borderTop: "1px solid #1f2937" }}>
-          <div style={{ flex: 1 }}>
-            <p style={{ fontSize: "0.7rem", color: "#6b7280", marginBottom: "4px" }}>Your BMI</p>
-            <p style={{ fontSize: "2rem", fontWeight: 800, color: "#fff", lineHeight: 1 }}>{bmi}</p>
+        <div style={{ display: "flex", alignItems: "center", gap: "14px", paddingTop: "16px", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+          <div>
+            <p style={{ fontSize: "0.68rem", color: "#6b7280", marginBottom: "4px" }}>Your BMI</p>
+            <p style={{ fontSize: "2.25rem", fontWeight: 700, color: "#f3f4f6", lineHeight: 1, letterSpacing: "-0.02em" }}>{bmi}</p>
           </div>
+          <div style={{ flex: 1 }} />
           <span style={{
-            display: "inline-flex",
-            alignItems: "center",
-            padding: "4px 12px",
+            padding: "5px 12px",
             borderRadius: "999px",
             fontSize: "0.72rem",
             fontWeight: 600,

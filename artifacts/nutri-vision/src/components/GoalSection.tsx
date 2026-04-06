@@ -6,55 +6,54 @@ interface GoalSectionProps {
 }
 
 const goals: { value: Goal; label: string; desc: string; icon: string }[] = [
-  { value: "Weight Loss", label: "Weight Loss", desc: "Calorie deficit, high fiber", icon: "↓" },
-  { value: "Maintain", label: "Maintain", desc: "Balanced nutrition", icon: "=" },
-  { value: "Weight Gain", label: "Weight Gain", desc: "Calorie surplus, high protein", icon: "↑" },
+  { value: "Weight Loss", label: "Weight Loss", desc: "Calorie deficit & high fiber", icon: "↓" },
+  { value: "Maintain",    label: "Maintain",    desc: "Balanced daily nutrition",    icon: "—" },
+  { value: "Weight Gain", label: "Weight Gain", desc: "Surplus & high protein",       icon: "↑" },
 ];
 
 export function GoalSection({ goal, onChange }: GoalSectionProps) {
   return (
     <div className="nv-card">
-      <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "22px" }}>
         <div className="nv-icon-box">
-          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#22c55e" strokeWidth={2}>
+          <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="#4ade80" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
         </div>
         <div>
-          <p style={{ fontSize: "0.6875rem", fontWeight: 600, color: "#fff", letterSpacing: "0.08em", textTransform: "uppercase" }}>Health Goal</p>
-          <p style={{ fontSize: "0.7rem", color: "#6b7280", marginTop: "2px" }}>Select your target</p>
+          <p style={{ fontSize: "0.72rem", fontWeight: 600, color: "#9ca3af", letterSpacing: "0.06em", textTransform: "uppercase" }}>Health Goal</p>
+          <p style={{ fontSize: "0.8rem", color: "#f3f4f6", fontWeight: 500, marginTop: "1px" }}>What are you aiming for?</p>
         </div>
       </div>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "12px" }}>
         {goals.map((g) => {
-          const isActive = goal === g.value;
+          const active = goal === g.value;
           return (
             <button
               key={g.value}
               onClick={() => onChange(g.value)}
               style={{
                 position: "relative",
-                padding: "16px",
+                padding: "18px 14px",
                 borderRadius: "12px",
-                border: isActive ? "1px solid rgba(34,197,94,0.5)" : "1px solid #1f2937",
-                background: isActive ? "rgba(34,197,94,0.08)" : "rgba(17,24,39,0.5)",
-                color: isActive ? "#fff" : "#9ca3af",
+                border: active ? "1px solid rgba(74,222,128,0.3)" : "1px solid rgba(255,255,255,0.05)",
+                background: active ? "rgba(74,222,128,0.07)" : "rgba(255,255,255,0.02)",
                 textAlign: "left",
                 cursor: "pointer",
                 transition: "all 0.2s ease",
               }}
             >
-              {isActive && (
-                <div style={{ position: "absolute", top: "8px", right: "8px", width: "16px", height: "16px", borderRadius: "50%", background: "#22c55e", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="#000" strokeWidth={3}>
+              {active && (
+                <div style={{ position: "absolute", top: "10px", right: "10px", width: "16px", height: "16px", borderRadius: "50%", background: "#16a34a", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <svg width="9" height="9" fill="none" viewBox="0 0 24 24" stroke="#fff" strokeWidth={3}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
               )}
-              <div style={{ fontSize: "1.3rem", fontWeight: 800, color: "#22c55e", marginBottom: "4px" }}>{g.icon}</div>
-              <p style={{ fontSize: "0.78rem", fontWeight: 600, marginBottom: "2px", color: isActive ? "#fff" : "#d1d5db" }}>{g.label}</p>
-              <p style={{ fontSize: "0.7rem", color: "#6b7280" }}>{g.desc}</p>
+              <div style={{ fontSize: "1.25rem", fontWeight: 700, color: active ? "#4ade80" : "#6b7280", marginBottom: "6px" }}>{g.icon}</div>
+              <p style={{ fontSize: "0.8rem", fontWeight: 600, color: active ? "#f3f4f6" : "#d1d5db", marginBottom: "3px" }}>{g.label}</p>
+              <p style={{ fontSize: "0.7rem", color: "#6b7280", lineHeight: 1.3 }}>{g.desc}</p>
             </button>
           );
         })}
