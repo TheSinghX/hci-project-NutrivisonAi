@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Nutri-Vision"
+version = "1.0.0"
+id = "artifacts/nutri-vision"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18410
+
+[services.development]
+run = "pnpm --filter @workspace/nutri-vision run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/nutri-vision", "run", "build" ]
+publicDir = "artifacts/nutri-vision/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18410"
+BASE_PATH = "/"

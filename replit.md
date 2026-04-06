@@ -16,6 +16,17 @@ pnpm workspace monorepo using TypeScript. Each package manages its own dependenc
 - **API codegen**: Orval (from OpenAPI spec)
 - **Build**: esbuild (CJS bundle)
 
+## Artifacts
+
+### Nutri-Vision (`/`)
+A premium AI-style Indian Nutrition Assistant web app built with React + Vite.
+- BMI Calculator with category badges
+- Ingredient selection via search or image upload (AI simulation)
+- 20+ Indian recipes in a structured database
+- Filter logic based on BMI category + health goal
+- Full recipe detail view with nutrition metrics and cooking steps
+- Dark theme (#0b0f14) with green accent (#22c55e)
+
 ## Key Commands
 
 - `pnpm run typecheck` — full typecheck across all packages

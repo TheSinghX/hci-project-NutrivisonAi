@@ -1,0 +1,262 @@
+Build a premium, modern, AI-style Streamlit web application called "Nutri-Vision".
+
+This is an intelligent Indian nutrition assistant that:
+- Takes user BMI
+- Accepts ingredients (via search or image upload)
+- Generates personalized diet recommendations
+- Shows full nutritional details and cooking steps
+
+The app must feel like a real startup product — clean, minimal, smooth, and interactive.
+
+--------------------------------------------------
+
+🎨 UI DESIGN (CRITICAL):
+
+- Dark theme: #0b0f14 background
+- Card background: #111827
+- Borders: #1f2937
+- Accent color: #22c55e
+- Rounded corners (12–16px)
+- Clean spacing (very important)
+- No gradients, no clutter
+- Professional typography
+
+Layout:
+- Centered layout (max width ~1100px)
+- Section-based design (cards stacked vertically)
+
+--------------------------------------------------
+
+📐 APP STRUCTURE:
+
+1. HEADER
+   - Title: "Nutri-Vision"
+   - Subtitle: "AI-powered Indian Nutrition Assistant"
+
+--------------------------------------------------
+
+2. BMI SECTION (Card)
+
+Inputs:
+- Height (cm)
+- Weight (kg)
+
+Button:
+- "Update BMI"
+
+Display:
+- BMI value (large)
+- Category badge:
+   Underweight / Normal / Overweight / Obese
+
+--------------------------------------------------
+
+3. INGREDIENT INPUT (Card)
+
+A. IMAGE UPLOAD (AI Simulation)
+- Use st.file_uploader
+- Show uploaded image preview
+- Simulate detection:
+   Example:
+   "Detected: Tomato, Onion, Carrot"
+- Automatically add these to selected ingredients
+
+B. SEARCHABLE SELECTOR
+
+- Use st.multiselect with search enabled
+- Placeholder: "Search and add ingredients..."
+
+Vegetables list:
+- potato, tomato, onion, carrot, spinach, paneer, cauliflower, cabbage, peas, capsicum
+
+Display selected items as clean tags/pills.
+
+--------------------------------------------------
+
+4. GOAL SELECTION (Card)
+
+Radio buttons:
+- Weight Loss
+- Maintain
+- Weight Gain
+
+--------------------------------------------------
+
+5. GENERATE BUTTON
+
+Centered:
+- "Generate Diet Plan"
+
+When clicked:
+- Show loading spinner:
+   "AI analyzing your ingredients..."
+
+--------------------------------------------------
+
+6. RESULTS SECTION
+
+Show:
+- "X Recipes Found"
+- Small label:
+   "BMI: Normal | Goal: Maintain"
+
+Display recipes in a 2-column grid.
+
+Each card must show:
+- Recipe name
+- Type badge:
+   Low Calorie / High Protein / Balanced / High Energy
+- Calories + Protein
+
+Button:
+- "View Details →"
+
+--------------------------------------------------
+
+🧠 STATE MANAGEMENT (IMPORTANT):
+
+Use st.session_state:
+
+- bmi_category
+- selected_recipe
+- detected_ingredients
+
+Initialize:
+
+if "selected_recipe" not in st.session_state:
+    st.session_state.selected_recipe = None
+
+--------------------------------------------------
+
+🍛 INDIAN RECIPE DATABASE:
+
+Create structured dictionary:
+
+Each recipe must have:
+- name
+- calories
+- protein
+- carbs
+- fats
+- type
+- benefits
+- steps (list)
+- bmi (list)
+
+Include realistic Indian dishes:
+
+Potato:
+- Aloo Paratha
+- Jeera Aloo
+- Aloo Chaat
+
+Tomato:
+- Tomato Soup
+- Tomato Rasam
+- Tomato Paneer Curry
+
+Carrot:
+- Gajar Halwa
+- Carrot Salad
+- Carrot Dal
+
+Spinach:
+- Palak Paneer
+- Spinach Dal
+
+Paneer:
+- Paneer Bhurji
+- Paneer Curry
+
+Cauliflower:
+- Gobi Masala
+- Cauliflower Rice
+
+At least 20+ recipes total.
+
+--------------------------------------------------
+
+🔍 FILTER LOGIC:
+
+Function get_recipes(ingredients, bmi, goal):
+
+Filter based on:
+- Selected ingredients
+- BMI category
+- Goal
+
+Return only relevant recipes.
+
+--------------------------------------------------
+
+📖 RECIPE DETAIL VIEW (IMPORTANT):
+
+When "View Details" is clicked:
+
+Store selected recipe:
+st.session_state.selected_recipe = recipe
+
+Display BELOW results:
+
+Show:
+
+1. Recipe title (large)
+
+2. Metrics (4 columns):
+   - Calories
+   - Protein
+   - Carbs
+   - Fats
+
+3. Benefits (highlight box)
+
+4. Cooking steps:
+   Numbered list
+
+5. Button:
+   "← Back to Recipes"
+   (clears selected_recipe)
+
+--------------------------------------------------
+
+✨ UX FEATURES:
+
+- Smooth spacing between sections
+- Divider before detail view
+- Empty state message if no recipes
+- Subtle hover effect on cards
+
+--------------------------------------------------
+
+🎨 CSS (IMPORTANT):
+
+Inject custom CSS using st.markdown:
+
+- Card styling
+- Button hover effects
+- Rounded corners
+- Slight hover scale (1.01)
+- Better spacing
+
+--------------------------------------------------
+
+🚫 DO NOT INCLUDE:
+
+- Chatbot
+- Expanders
+- Random recipe generator
+- Over-designed UI
+
+--------------------------------------------------
+
+FINAL RESULT:
+
+The app should:
+- Feel premium and minimal
+- Have smooth interaction
+- Support image upload + search
+- Show real Indian diet logic
+- Display full nutrition + steps
+- Work perfectly when clicking recipes
+
+It should look like a real AI startup product demo.
