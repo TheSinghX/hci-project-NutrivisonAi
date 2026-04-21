@@ -55,3 +55,7 @@ It helps users decide whether they should focus on weight loss, weight gain, or 
 
 ## Conclusion
 This project shows how combining AI concepts with HCI principles can create a practical and user-friendly solution for everyday health and nutrition management.
+
+
+## 🌐 Live Demo
+Try the application here: https://rb.gy/sapvof
